@@ -1,5 +1,7 @@
 # Repository Notes
 
+This is a chezmoi-managed dotfiles repository for a Linux desktop environment running Hyprland and KDE Plasma on Wayland. It manages shell configuration, terminal emulators (foot, alacritty), window manager bindings, application themes, and system services.
+
 - Keep user-level non-secret chezmoi variables in `.chezmoidata/user.yml`, nested under `user`.
 - Keep secrets in `.chezmoidata/secrets.yml`.
 - Service configuration should use unified keys under `user.services.<service>.*`.
