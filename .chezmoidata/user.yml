@@ -1,4 +1,8 @@
 user:
+  desktops:
+    hypr: 'start-hyprland'
+    kde: '/usr/lib/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland'
+    niri: 'niri-session'
   colors:
     terminal:
       normal:
@@ -41,6 +45,8 @@ user:
     cursorSize: 28
     dpi: 258.76
   fonts:
+    size:
+      terminal: 16.5
     sans:
       - 'Noto Sans'
       - 'Noto Sans CJK SC'
@@ -68,10 +74,15 @@ user:
     symbols:
       - 'Symbols Nerd Font'
       - 'Noto Sans Symbols'
+  paths:
+    wobpipe: '/tmp/wob.pipe'
   programs:
-    dmenu: fzf
-    dmenuGUI: fuzzeld.sh
+    fzf: fzf
+    dmenu: dmenu.sh
     editor: nvim
+    idle: hypridle
+    launcher: fuzzel
+    notification: mako
     shell: bash
     terminal: foot
   services:
@@ -82,7 +93,7 @@ user:
       host: 127.0.0.1
       port: 2709
   themes:
-    cursor: 'GoogleDot-White'
+    cursor: 'Miku-Cursor'
     icon: 'Breeze-Dark'
     gtk: 'Breeze-Dark'
     # for qt use qt6ct
@@ -93,5 +104,6 @@ user:
     pictures: pic
     publicshare: work
     videos: video
-    desktop: work
+    desktop: desktop
     templates: work
+    projects: work

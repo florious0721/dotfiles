@@ -4,14 +4,12 @@ append_path() {
   case ":$PATH:" in
   *:"$1":*) ;;
   *)
-    PATH="${PATH:+$PATH:}$1"
+    PATH="$1${PATH:+:$PATH}"
     ;;
   esac
 }
 
 export EDITOR='{{ .user.programs.editor }}'
-export DMENU='{{ .user.programs.dmenu }}'
-export DMENU_GUI='{{ .user.programs.dmenuGUI }}'
 export LANG='en_US.UTF-8'
 export LESSHISTSIZE=0
 export LESSHISTFILE=/dev/null
@@ -46,6 +44,8 @@ export DOTNET_TOOLS="${DOTNET_HOME}/tools"
 # export NUGET_HOME="${HOME}/.nuget"
 
 export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
+export BUN_HOME="${HOME}/.bun"
+export BUN_CACHE="${XDG_CACHE_HOME}/.bun"
 
 export UV_HOME="${XDG_DATA_HOME}/uv"
 export UV_CACHE_DIR="${XDG_CACHE_HOME}/uv"
@@ -65,6 +65,8 @@ append_path "${NPM_PREFIX}/bin"
 append_path "${DOTNET_TOOLS}"
 append_path "${PNPM_HOME}"
 append_path "${PNPM_HOME}/bin"
+append_path "${BUN_HOME}/bin"
+append_path "${BUN_CACHE}/bin"
 append_path "${GOPATH}/bin"
 
 # vim:ft=sh:
