@@ -32,3 +32,6 @@ PS4='\[\033[01;31m\]!\[\033[00m\] '
 set +H -o emacs
 
 export GPG_TTY="$(tty)"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
