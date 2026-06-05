@@ -1,0 +1,11 @@
+[General]
+FreeFloating=true
+
+[Plugins]
+baloosearchEnabled=false
+krunner_placesrunnerEnabled=false
+krunner_recentdocumentsEnabled=false
+locationsEnabled=false
+
+[Plugins][Favorites]
+plugins=krunner_sessions,krunner_powerdevil,krunner_services,krunner_systemsettings

@@ -1,0 +1,243 @@
+[
+    {
+        "data": [
+            {
+                "allowDdcCi": true,
+                "allowSdrSoftwareBrightness": false,
+                "autoBrightnessCurve": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "autoRotation": "InTabletMode",
+                "automaticBrightness": false,
+                "brightness": 0.5,
+                "colorPowerTradeoff": "PreferEfficiency",
+                "colorProfileSource": "sRGB",
+                "connectorName": "eDP-1",
+                "customModes": [
+                ],
+                "detectedDdcCi": false,
+                "edidHash": "354ad2f3c4ca43cfdc75d25a5c48115e",
+                "edidIdentifier": "BOE 3378 110 27 2024 0",
+                "edrPolicy": "always",
+                "highDynamicRange": false,
+                "iccProfilePath": "",
+                "maxBitsPerColor": 0,
+                "mode": {
+                    "flags": 0,
+                    "height": 1920,
+                    "refreshRate": 120000,
+                    "width": 3072
+                },
+                "overscan": 0,
+                "rgbRange": "Automatic",
+                "scale": 1.65,
+                "sdrBrightness": 200,
+                "sdrGamutWideness": 0,
+                "sharpness": 0,
+                "transform": "Normal",
+                "uuid": "09d27f58-0532-4d9d-a5c5-11c8eb6b8a72",
+                "vrrPolicy": "Never",
+                "wideColorGamut": false
+            },
+            {
+                "allowDdcCi": true,
+                "allowSdrSoftwareBrightness": false,
+                "autoBrightnessCurve": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "autoRotation": "InTabletMode",
+                "automaticBrightness": false,
+                "brightness": 1,
+                "colorPowerTradeoff": "PreferEfficiency",
+                "colorProfileSource": "sRGB",
+                "connectorName": "HDMI-A-1",
+                "customModes": [
+                ],
+                "detectedDdcCi": true,
+                "edidHash": "1babbcc2cb073af7ba4b55baa4238beb",
+                "edidIdentifier": "SAM 3378 810568779 46 2015 0",
+                "edrPolicy": "always",
+                "highDynamicRange": false,
+                "iccProfilePath": "",
+                "maxBitsPerColor": 0,
+                "mode": {
+                    "flags": 1,
+                    "height": 1080,
+                    "refreshRate": 60000,
+                    "width": 1920
+                },
+                "overscan": 0,
+                "rgbRange": "Automatic",
+                "scale": 1,
+                "sdrBrightness": 200,
+                "sdrGamutWideness": 0,
+                "sharpness": 0,
+                "transform": "Normal",
+                "uuid": "1a44dc43-981d-4f22-96f0-192d98a7feb7",
+                "vrrPolicy": "Never",
+                "wideColorGamut": false
+            },
+            {
+                "allowDdcCi": true,
+                "allowSdrSoftwareBrightness": true,
+                "autoBrightnessCurve": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "autoRotation": "InTabletMode",
+                "automaticBrightness": false,
+                "brightness": 1,
+                "colorPowerTradeoff": "PreferEfficiency",
+                "colorProfileSource": "sRGB",
+                "connectorName": "Virtual-virtual-xdp-kde-org.chromium.Chromium",
+                "customModes": [
+                ],
+                "detectedDdcCi": false,
+                "edrPolicy": "always",
+                "highDynamicRange": false,
+                "iccProfilePath": "",
+                "mode": {
+                    "flags": 1,
+                    "height": 1080,
+                    "refreshRate": 60000,
+                    "width": 1920
+                },
+                "overscan": 0,
+                "rgbRange": "Automatic",
+                "scale": 1,
+                "sdrBrightness": 200,
+                "sdrGamutWideness": 0,
+                "sharpness": 0,
+                "transform": "Normal",
+                "uuid": "390abe81-8cca-49b5-bc1f-eb005741b08b",
+                "vrrPolicy": "Never",
+                "wideColorGamut": false
+            }
+        ],
+        "name": "outputs"
+    },
+    {
+        "data": [
+            {
+                "lidClosed": false,
+                "outputs": [
+                    {
+                        "enabled": true,
+                        "outputIndex": 0,
+                        "position": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "priority": 1,
+                        "replicationSource": ""
+                    }
+                ]
+            },
+            {
+                "lidClosed": true,
+                "outputs": [
+                    {
+                        "enabled": true,
+                        "outputIndex": 0,
+                        "position": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "priority": 1,
+                        "replicationSource": ""
+                    }
+                ]
+            },
+            {
+                "lidClosed": false,
+                "outputs": [
+                    {
+                        "enabled": true,
+                        "outputIndex": 0,
+                        "position": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "priority": 1,
+                        "replicationSource": ""
+                    },
+                    {
+                        "enabled": true,
+                        "outputIndex": 1,
+                        "position": {
+                            "x": 1862,
+                            "y": 0
+                        },
+                        "priority": 2,
+                        "replicationSource": ""
+                    }
+                ]
+            },
+            {
+                "lidClosed": true,
+                "outputs": [
+                    {
+                        "enabled": false,
+                        "outputIndex": 0,
+                        "position": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "priority": 1,
+                        "replicationSource": ""
+                    },
+                    {
+                        "enabled": true,
+                        "outputIndex": 1,
+                        "position": {
+                            "x": 1862,
+                            "y": 0
+                        },
+                        "priority": 2,
+                        "replicationSource": ""
+                    }
+                ]
+            },
+            {
+                "lidClosed": false,
+                "outputs": [
+                    {
+                        "enabled": true,
+                        "outputIndex": 0,
+                        "position": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "priority": 1,
+                        "replicationSource": ""
+                    },
+                    {
+                        "enabled": true,
+                        "outputIndex": 2,
+                        "position": {
+                            "x": 1862,
+                            "y": 0
+                        },
+                        "priority": 2,
+                        "replicationSource": ""
+                    }
+                ]
+            }
+        ],
+        "name": "setups"
+    }
+]

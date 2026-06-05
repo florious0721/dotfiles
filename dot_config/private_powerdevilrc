@@ -1,0 +1,14 @@
+[AC][SuspendAndShutdown]
+AutoSuspendAction=0
+AutoSuspendIdleTimeoutSec=1800
+LidAction=32
+
+[Activities][649c65dc-882e-4905-8626-901cc6ab0c77]
+InhibitScreenManagement=true
+InhibitSuspend=true
+
+[Battery][SuspendAndShutdown]
+LidAction=32
+
+[BatteryManagement]
+BatteryCriticalAction=0

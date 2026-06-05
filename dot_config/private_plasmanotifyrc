@@ -1,0 +1,5 @@
+[Applications][thorium-browser]
+Seen=true
+
+[Notifications]
+PopupTimeout=3000
