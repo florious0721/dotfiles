@@ -44,6 +44,7 @@ user:
   device:
     cursorSize: 48
     dpi: 258.76
+    timezone: 'Asia/Shanghai'
   fonts:
     size:
       terminal: 16.5
