@@ -3,12 +3,15 @@
 app-id = foot
 bold-text-in-bright = yes
 dpi-aware = no
-font = monospace:size=14
+font = monospace:size={{ .user.fonts.size.terminal }}
 locked-title = yes
 login-shell = no
 #resize-delay-ms = 100
 shell = /bin/tmux
 title = Foot
+
+[bell]
+system = no
 
 [colors-dark]
 background = {{ $terminal.normal.background }}
