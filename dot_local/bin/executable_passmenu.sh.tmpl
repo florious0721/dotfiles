@@ -1,0 +1,169 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Whether to use the GUI-oriented menu command.
+use_gui=0
+# How the selected secret should be delivered: copied or typed.
+action="copy"
+# Which rbw secret to fetch for the selected entry.
+secret_kind="password"
+# Tokenized menu command used to present entry choices.
+menu_cmd=()
+# Display labels shown in the chooser, indexed alongside entry_ids.
+entry_labels=()
+# rbw item IDs corresponding to entry_labels.
+entry_ids=()
+# Chosen label returned by the menu command.
+selection=""
+# rbw item ID resolved from the chosen label.
+entry_id=""
+# Final secret value fetched from rbw.
+secret=""
+
+usage() {
+  echo "usage: passmenu.sh [gui] [type] [totp|otp|password]" >&2
+}
+
+require_cmd() {
+  command -v "$1" >/dev/null 2>&1 || {
+    echo "$1 not found!" >&2
+    exit 1
+  }
+}
+
+pick_menu() {
+  local menu_var
+
+  if [[ "${use_gui}" == "1" ]]; then
+    menu_var="dmenu.sh"
+    [[ -n "${menu_var}" ]] || {
+      echo "Gui menu not available!" >&2
+      exit 1
+    }
+  else
+    menu_var="fzf"
+    [[ -n "${menu_var}" ]] || {
+      echo "Menu not available!" >&2
+      exit 1
+    }
+  fi
+
+  read -r -a menu_cmd <<<"${menu_var}"
+  [[ "${#menu_cmd[@]}" -gt 0 ]] || {
+    echo "Invalid menu command!" >&2
+    exit 1
+  }
+}
+
+format_label() {
+  local folder="$1"
+  local name="$2"
+  local user="$3"
+  local label
+
+  if [[ -n "${folder}" ]]; then
+    label="${folder}/${name}"
+  else
+    label="${name}"
+  fi
+
+  if [[ -n "${user}" ]]; then
+    label="${label} [${user}]"
+  fi
+
+  printf '%s' "${label}"
+}
+
+build_entries() {
+  local raw_entries=()
+  local id folder name user label
+  local -A label_counts=()
+
+  mapfile -t raw_entries < <(rbw list --fields id,folder,name,user)
+
+  for entry in "${raw_entries[@]}"; do
+    IFS=$'\t' read -r id folder name user <<<"${entry}"
+    [[ -n "${id}" ]] || continue
+    label="$(format_label "${folder}" "${name}" "${user}")"
+    label_counts["${label}"]=$((label_counts["${label}"] + 1))
+  done
+
+  for entry in "${raw_entries[@]}"; do
+    IFS=$'\t' read -r id folder name user <<<"${entry}"
+    [[ -n "${id}" ]] || continue
+    label="$(format_label "${folder}" "${name}" "${user}")"
+    if [[ "${label_counts["${label}"]}" -gt 1 ]]; then
+      label="${label} (${id:0:8})"
+    fi
+    entry_labels+=("${label}")
+    entry_ids+=("${id}")
+  done
+}
+
+get_secret() {
+  if [[ "${secret_kind}" == "totp" ]]; then
+    rbw code "$1"
+  else
+    rbw get "$1"
+  fi
+}
+
+copy_secret() {
+  printf '%s' "$1" | wl-copy
+}
+
+type_secret() {
+  ydotool type "$1"
+}
+
+for arg in "$@"; do
+  case "${arg}" in
+  gui)
+    use_gui=1
+    ;;
+  type)
+    action="type"
+    ;;
+  password | pass)
+    secret_kind="password"
+    ;;
+  totp | otp)
+    secret_kind="totp"
+    ;;
+  *)
+    usage
+    exit 1
+    ;;
+  esac
+done
+
+require_cmd rbw
+require_cmd ydotool
+require_cmd wl-copy
+pick_menu
+
+rbw unlocked >/dev/null 2>&1 || rbw unlock >/dev/null
+build_entries
+
+selection="$(
+  printf '%s\n' "${entry_labels[@]}" | "${menu_cmd[@]}"
+)"
+
+[[ -n "${selection}" ]] || exit 0
+
+for i in "${!entry_labels[@]}"; do
+  if [[ "${entry_labels[i]}" == "${selection}" ]]; then
+    entry_id="${entry_ids[i]}"
+    break
+  fi
+done
+
+[[ -n "${entry_id}" ]] || exit 1
+secret="$(get_secret "${entry_id}" | tr -d '\n')"
+
+if [[ "${action}" == "type" ]]; then
+  type_secret "${secret}"
+else
+  copy_secret "${secret}"
+fi

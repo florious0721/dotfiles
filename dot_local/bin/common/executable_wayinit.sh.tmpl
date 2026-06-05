@@ -1,0 +1,18 @@
+#!/bin/bash
+
+tmux new-session -d
+tmux new-window -d 'easyeffects --gapplication-service'
+tmux new-window -d 'ydotoold'
+tmux new-window -d -c ~/.local/share/cli-proxy-api/ './cli-proxy-api'
+tmux new-window -d -c ~/.local/share/mihomo/ 'pkexec mihomo -f config.yaml -d .'
+
+
+if [[ "$XDG_CURRENT_DESKTOP" != "KDE" ]]; then
+tmux new-window -d {{ .user.programs.notification }}
+tmux new-window -d {{ .user.programs.idle }}
+tmux new-window -d 'fcitx5 -Dr'
+tmux new-window -d wob.sh
+
+sleep 5
+xrdb ~/.Xresources
+fi

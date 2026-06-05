@@ -1,0 +1,9 @@
+#!/bin/bash
+{{- $wobpipe := .user.paths.wobpipe }}
+clean() {
+  [[ -p {{ $wobpipe }} ]] && rm {{ $wobpipe }}
+}
+trap clean EXIT
+
+[[ -p {{ $wobpipe }} ]] || mkfifo {{ $wobpipe }}
+tail -f {{ $wobpipe }} | wob

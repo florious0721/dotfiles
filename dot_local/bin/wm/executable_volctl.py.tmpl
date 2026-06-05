@@ -1,0 +1,33 @@
+#!/bin/python
+from pathlib import Path as path
+from subprocess import run
+from subprocess import Popen
+
+import subprocess as subproc
+import sys
+
+wobpipe = path('{{ .user.paths.wobpipe }}')
+
+def get():
+    if not wobpipe.exists(): return
+    with Popen(['wpctl', 'get-volume', '@DEFAULT_AUDIO_SINK@'], stdout=subproc.PIPE) as p:
+        s = p.stdout.read()
+        if s.endswith(b']\n'):
+            v = 0
+        else:
+            v = int(s.split(b'.')[1])
+    with open(wobpipe, 'wt') as f:
+        f.write(f'{v} volume\n')
+
+def main():
+    sign = sys.argv[1][0]
+    if sign == '+' or sign == '-':
+        p = run(['wpctl', 'set-volume', '-l', '1.0', '@DEFAULT_AUDIO_SINK@', f'{sys.argv[1][1:]}%{sign}'])
+        get()
+
+    elif sys.argv[1] == 'mute':
+        p = run(['wpctl', 'set-mute', '@DEFAULT_AUDIO_SINK@', 'toggle'])
+        get()
+    else:
+        raise ValueError()
+main()

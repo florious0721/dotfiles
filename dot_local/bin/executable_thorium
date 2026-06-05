@@ -1,0 +1,2 @@
+#!/bin/bash
+exec thorium-browser --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=basic "$@"

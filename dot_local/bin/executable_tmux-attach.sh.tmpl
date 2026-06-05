@@ -1,0 +1,4 @@
+#!/bin/bash
+session="$(tmux list-sessions | grep -v '\(attached\)' | {{ .user.programs.dmenu }} | cut -d':' -f1)"
+[[ ! -z "${session}" ]] && {{ .user.programs.terminal }} -e tmux attach -t "${session}"
+# vim:ft=sh:

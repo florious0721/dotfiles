@@ -1,0 +1,35 @@
+#!/bin/bash
+
+export LANG='zh_CN.UTF-8'
+
+#export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export XMODIFIERS='@im=fcitx'
+export INPUT_METHOD='fcitx'
+export SDL_IM_MODULE='fcitx'
+export GLFW_IM_MODULE='ibus'
+
+export XDG_SESSION_TYPE='wayland'
+export XCURSOR_THEME='{{ .user.themes.cursor }}'
+export XCURSOR_SIZE='{{ .user.device.cursorSize }}'
+export HYPRCURSOR_SIZE='{{ .user.device.cursorSize }}'
+
+export WLR_RENDERER='vulkan'
+
+export GTK_THEME='{{ .user.themes.gtk }}'
+export ICON_THEME='{{ .user.themes.icon }}'
+
+export QT_AUTO_SCREEN_SCALE_FACTOR='1'
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_QPA_PLATFORM='wayland'
+export QT_WAYLAND_DISABLE_WINDOWDECORATION='1'
+
+export CLUTTER_BACKEND='wayland'
+export GDK_BACKEND='wayland,x11'
+export MOZ_ENABLE_WAYLAND='1'
+
+export LABWC_UPDATE_ACTIVATION_ENV='1'
+
+{{ range $k, $v := .user.desktops }}
+[[ "$1" == "{{ $k }}" ]] && {{ $v }}
+{{ end }}
