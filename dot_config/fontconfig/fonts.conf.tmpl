@@ -1,75 +1,75 @@
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
 <fontconfig>
+ <alias binding="strong">
+  <family>sans-serif</family>
+  <prefer>{{ range .user.fonts.sans }}
+   <family>{{ . }}</family>{{ end }}
+  </prefer>
+ </alias>
 
-  <alias binding="strong">
-    <family>sans-serif</family>
-    <prefer>{{ range .user.fonts.sans }}
-      <family>{{ . }}</family>{{ end }}
-    </prefer>
-  </alias>
+ <alias binding="strong">
+  <family>serif</family>
+  <prefer>{{ range .user.fonts.serif }}
+   <family>{{ . }}</family>{{ end }}
+  </prefer>
+ </alias>
 
-  <alias binding="strong">
-    <family>serif</family>
-    <prefer>{{ range .user.fonts.serif }}
-      <family>{{ . }}</family>{{ end }}
-    </prefer>
-  </alias>
+ <alias binding="strong">
+  <family>monospace</family>
+  <prefer>{{ range .user.fonts.monospace }}
+   <family>{{ . }}</family>{{ end }}
+  </prefer>
+ </alias>
 
-  <alias binding="strong">
-    <family>monospace</family>
-    <prefer>{{ range .user.fonts.monospace }}
-      <family>{{ . }}</family>{{ end }}
-    </prefer>
-  </alias>
+ <alias binding="strong">
+  <family>emoji</family>
+  <prefer>{{ range .user.fonts.emoji }}
+   <family>{{ . }}</family>{{ end }}
+  </prefer>
+ </alias>
 
-  <alias binding="strong">
-    <family>emoji</family>
-    <prefer>{{ range .user.fonts.emoji }}
-      <family>{{ . }}</family>{{ end }}
-    </prefer>
-  </alias>
+ <alias binding="strong">
+  <family>symbols</family>
+  <prefer>{{ range .user.fonts.symbols }}
+   <family>{{ . }}</family>{{ end }}
+  </prefer>
+ </alias>
 
-  <alias binding="strong">
-    <family>symbols</family>
-    <prefer>{{ range .user.fonts.symbols }}
-      <family>{{ . }}</family>{{ end }}
-    </prefer>
-  </alias>
+ <selectfont><rejectfont><pattern><patelt name="family">
+  <string>Noto Znamenny Musical Notation</string>
+  <string>Nimbus Sans</string>
+ </patelt></pattern></rejectfont></selectfont>
 
-  <selectfont><rejectfont><pattern><patelt name="family">
-    <string>Noto Znamenny Musical Notation</string>
-    <string>Nimbus Sans</string>
-  </patelt></pattern></rejectfont></selectfont>
+ <match target="pattern">
+  <test qual="any" name="family">
+   <string>system-ui</string>
+  </test>
+  <edit name="family" mode="assign" binding="same">
+   <string>sans-serif</string>
+  </edit>
+ </match>
 
-  <match target="pattern">
-    <test qual="any" name="family">
-      <string>system-ui</string>
-    </test>
-    <edit name="family" mode="assign" binding="same">
-      <string>sans-serif</string>
-    </edit>
-  </match>
+ <match target="pattern">
+  <test qual="any" name="family">
+   <string>symbol</string>
+  </test>
+  <edit name="family" mode="assign" binding="same">
+   <string>symbols</string>
+  </edit>
+ </match>
 
-  <match target="pattern">
-    <test qual="any" name="family">
-      <string>symbol</string>
-    </test>
-    <edit name="family" mode="assign" binding="same">
-      <string>symbols</string>
-    </edit>
-  </match>
-
-  <match target="font">
-    <edit name="antialias"><bool>true</bool></edit>
-    <edit name="hinting"><bool>true</bool></edit>
-    <edit name="autohint"><bool>false</bool></edit>
-    <!-- 设置微调级别 -->
-    <edit name="hintstyle"><const>hintslight</const></edit>
-    <!-- 禁用合成粗体 -->
-    <edit name="embolden"><bool>false</bool></edit>
-    <!-- 设置为 RGB 规范 -->
-    <edit name="rgba"><const>rgb</const></edit>
-  </match>
+ <match target="font">
+  <edit mode="assign" name="antialias"><bool>true</bool></edit>
+  <edit mode="assign" name="hinting"><bool>true</bool></edit>
+  <!-- 设置微调级别 -->
+  <edit mode="assign" name="hintstyle"><const>hintslight</const></edit>
+  <edit name="autohint"><bool>false</bool></edit>
+  <!-- 禁用合成粗体 -->
+  <edit name="embolden"><bool>false</bool></edit>
+  <!-- 设置为 RGB 规范 -->
+  <edit name="rgba"><const>rgb</const></edit>
+ </match>
+ <dir>~/.local/share/fonts</dir>
 
 </fontconfig>
