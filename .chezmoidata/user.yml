@@ -78,6 +78,7 @@ user:
       - 'Noto Sans Symbols'
   paths:
     wobpipe: '/tmp/wob.pipe'
+    wallpaper: 'great/336535_desktop.jpg'
   programs:
     fzf: fzf
     dmenu: dmenu.sh
